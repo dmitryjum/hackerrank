@@ -1,19 +1,34 @@
-require 'pry'
-# def superDigit(n, k)
-#     if n.to_i <= 9
-#       puts n
-#       return n
-#     end
-#     result = (n.chars * k).reduce(0) { |sum, n| sum + n.to_i }
-#     superDigit(result.to_s, 1)
-# end
+#!/bin/ruby
+
+require 'json'
+require 'stringio'
+
+#
+# Complete the 'superDigit' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. STRING n
+#  2. INTEGER k
+#
 
 def superDigit(n, k)
-  number = n * k
-  while number.size > 1
-    number = number.chars.reduce(0) {|sum, n| sum + n.to_i}.to_s
-  end
-  puts number
+    n if n.to_i <= 9
+    result = n.chars.reduce(0) { |sum, n| sum + n.to_i } * k
+    result <= 9 ? result : superDigit(result.to_s, 1)
 end
 
-superDigit('148', 100000)
+fptr = File.open(ENV['OUTPUT_PATH'], 'w')
+
+first_multiple_input = gets.rstrip.split
+
+n = first_multiple_input[0]
+
+k = first_multiple_input[1].to_i
+
+result = superDigit n, k
+
+fptr.write result
+fptr.write "\n"
+
+fptr.close()
