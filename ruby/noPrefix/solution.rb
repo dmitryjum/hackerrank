@@ -10,16 +10,19 @@ require 'stringio'
 #
 
 def noPrefix(words)
-    bad_set = false
+    bad_set = nil
     words.each do |w|
         words.each do |s|
             unless w == s
                 prefix = Regexp.new("^#{w}")
-                bad_set = (s =~ prefix) == 0
+                if (s =~ prefix) == 0
+                    bad_set = s
+                    break
+                end
             end
         end
     end
-    puts bad_set ? "BAD SET" : "GOOD SET"
+    puts bad_set.nil? ? "GOOD SET" : "BAD SET\n#{bad_set}"
 end
 
 n = gets.strip.to_i
