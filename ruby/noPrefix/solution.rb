@@ -1,7 +1,7 @@
 #!/bin/ruby
 
-require 'json'
-require 'stringio'
+# require 'json'
+# require 'stringio'
 
 #
 # Complete the 'noPrefix' function below.
@@ -13,26 +13,24 @@ def noPrefix(words)
     bad_set = nil
     words.each do |w|
         words.each do |s|
-            unless w == s
-                prefix = Regexp.new("^#{w}")
-                if (s =~ prefix) == 0
-                    bad_set = s
-                    break
-                end
+            if w != s && w == s[0..w.size-1]
+                bad_set = s
+                break
             end
         end
+        break unless bad_set.nil?
     end
-    puts bad_set.nil? ? "GOOD SET" : "BAD SET\n#{bad_set}"
+    return bad_set.nil? ? "GOOD SET" : "BAD SET\n#{bad_set}"
 end
 
-n = gets.strip.to_i
+# n = gets.strip.to_i
 
-words = Array.new(n)
+# words = Array.new(n)
 
-n.times do |i|
-    words_item = gets.chomp
+# n.times do |i|
+#     words_item = gets.chomp
 
-    words[i] = words_item
-end
+#     words[i] = words_item
+# end
 
-noPrefix words
+# noPrefix words
