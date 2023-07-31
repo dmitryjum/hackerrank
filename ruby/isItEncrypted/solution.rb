@@ -1,13 +1,13 @@
 require 'pry'
 def validator(original, encrypted)
-  test_map = {}
   return false if original.length != encrypted.length || (original.empty? && encrypted.empty?)
-  original.chars.each_with_index do |char, i|
+  test_map = {}
+  original.chars.zip(encrypted.chars).each do |char, enc_char|
     if test_map[char].nil?
-      return false if test_map.values.include? encrypted[i]
-      test_map[char] = encrypted[i]
+      return false if test_map.values.include? enc_char
+      test_map[char] = enc_char
     else
-      return false if test_map[char] != encrypted[i]
+      return false if test_map[char] != enc_char
     end
   end
   true
