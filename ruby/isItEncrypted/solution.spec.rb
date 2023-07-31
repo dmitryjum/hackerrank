@@ -19,5 +19,11 @@ RSpec.describe "validator" do
 
   it "returns false if the length of strings doesn't match" do
     expect(validator("pineapple", "asdfsd")).to eq(false)
+    expect(validator("", "bla")).to eq(false)
+    expect(validator("bla", "")).to eq(false)
+  end
+
+  it "returns false for both empty strings" do
+    expect(validator("", "")).to eq(false)
   end
 end
