@@ -1,6 +1,12 @@
-def bomberMan(n, grid)
-  n.times do |i|
+require 'pry'
 
+def bomberMan(n, grid)
+  (1..n).each do |i|
+    bombs_coordinates = []
+    grid.each do |row|
+      binding.pry
+      location = row.index("0")
+    end
   end
 end
 grid =['.......',
@@ -9,5 +15,5 @@ grid =['.......',
        '.......',
        'OO.....',
        'OO.....']
-       
+
 puts bomberMan(3, grid)
